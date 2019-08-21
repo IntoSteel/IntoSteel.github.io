@@ -1,0 +1,978 @@
+<h1 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h1><h2 id="一、变量-赋值"><a href="#一、变量-赋值" class="headerlink" title="一、变量/赋值"></a>一、变量/赋值</h2><h3 id="1-ES5"><a href="#1-ES5" class="headerlink" title="1.ES5"></a>1.ES5</h3><h4 id="1-1-常量"><a href="#1-1-常量" class="headerlink" title="1.1 常量"></a>1.1 常量</h4><blockquote>
+<p>ES5中常量定义是通过Object.defineProperty()，来改变属性描述符，进而达到常量的效果。而且重复定义不会报错</p>
+</blockquote>
+<pre><code class="javascript"><span class="built_in">Object</span>.defineProperty(对象，对象属性,{
+    value:默认值
+    writable:是否可写
+})</code></pre>
+<pre><code class="javascript">&lt;script type=<span class="string">"text/javascript"</span>&gt;
+        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+            <span class="built_in">Object</span>.defineProperty(<span class="built_in">window</span>,<span class="string">"aaa"</span>,{
+                value:<span class="number">3.14159</span>,
+                writable:<span class="literal">false</span>
+            })
+            <span class="built_in">console</span>.log(<span class="built_in">window</span>.aaa);
+            <span class="built_in">window</span>.PI_HBK=<span class="number">200</span>;
+            <span class="built_in">console</span>.log(<span class="built_in">window</span>.aaa);
+        }
+&lt;<span class="regexp">/script&gt;</span></code></pre>
+<h4 id="1-2-变量"><a href="#1-2-变量" class="headerlink" title="1.2 变量"></a>1.2 变量</h4><blockquote>
+<p>var    可以重复定义、不能限制修改、没有块级作用域</p>
+</blockquote>
+<h3 id="2-ES6"><a href="#2-ES6" class="headerlink" title="2.ES6"></a>2.ES6</h3><blockquote>
+<p>let        不能重复定义、变量、有块级作用域<br>const   不能重复定义、常量、有块级作用域在同一作用域中重复定义赋值会报错</p>
+</blockquote>
+<h2 id="二、解构赋值"><a href="#二、解构赋值" class="headerlink" title="二、解构赋值"></a>二、解构赋值</h2><blockquote>
+<p>es6允许按照一定的模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）</p>
+</blockquote>
+<ul>
+<li>变量要和右边的属性同名；右边得是个东西。可以理解为  左边&lt;=右边</li>
+</ul>
+<h3 id="1-数组解构赋值"><a href="#1-数组解构赋值" class="headerlink" title="1.数组解构赋值"></a>1.数组解构赋值</h3><pre><code class="markdown">let [a,b,c]=[1,2,4]
+console.log(a,b,c)</code></pre>
+<h3 id="2-对象解构赋值"><a href="#2-对象解构赋值" class="headerlink" title="2.对象解构赋值"></a>2.对象解构赋值</h3><pre><code class="markdown">let{a,b} = {a:'aaa',b:'bbb'};
+console.log(a,b);//aaa  bbb</code></pre>
+<h3 id="3-字符串解构赋值"><a href="#3-字符串解构赋值" class="headerlink" title="3.字符串解构赋值"></a>3.字符串解构赋值</h3><pre><code class="markdown">let[a,b,c]=&#39;hello&#39;;
+console.log(a,b,c);//hel</code></pre>
+<h3 id="4-函数解构赋值"><a href="#4-函数解构赋值" class="headerlink" title="4.函数解构赋值"></a>4.函数解构赋值</h3><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">[x,y]</span>)</span>{
+  <span class="built_in">console</span>.log(x+y)；<span class="comment">//3</span>
+}
+fun([<span class="number">1</span>,<span class="number">2</span>]);</code></pre>
+<h3 id="5-解构赋值的用途"><a href="#5-解构赋值的用途" class="headerlink" title="5.解构赋值的用途"></a>5.解构赋值的用途</h3><ol>
+<li><p>交换变量值</p>
+<pre><code class="javascript"><span class="keyword">let</span> x=<span class="number">1</span>;
+<span class="keyword">let</span> y=<span class="number">2</span>;
+[x,y]=[y,x];
+<span class="built_in">console</span>.log(x,y);<span class="comment">//2,1</span></code></pre>
+</li>
+<li><p>从函数返回多个值</p>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>{
+    <span class="keyword">return</span> {
+        a:<span class="number">1</span>,
+        b:<span class="number">2</span>
+    };
+};
+<span class="keyword">let</span> {a,b}=fun();
+<span class="built_in">console</span>.log(a,b);<span class="comment">//1,2</span></code></pre>
+</li>
+<li><p>函数传参</p>
+<pre><code class="javascript"><span class="comment">//有序传参</span>
+<span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">[a,b,c]</span>)</span>{
+    <span class="built_in">console</span>.log(a,b,c);
+}
+fun([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])
+
+<span class="comment">//无序传参</span>
+<span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params">{x,y,z}</span>)</span>{
+    <span class="built_in">console</span>.log(z,x,y);
+}
+fun1({<span class="attr">x</span>:<span class="number">3</span>,<span class="attr">z</span>:<span class="number">1</span>,<span class="attr">y</span>:<span class="number">2</span>})</code></pre>
+</li>
+<li><p>提取json数据</p>
+<ul>
+<li>解构对提取数据尤其有用</li>
+</ul>
+</li>
+<li><p>函数参数默认值</p>
+</li>
+</ol>
+<ul>
+<li>必须定义和赋值同步完成，否则报错</li>
+</ul>
+<pre><code class="javascript"><span class="keyword">let</span>[a,b];
+[a,b]=[<span class="number">12</span>,<span class="number">10</span>]
+alert(a,b) <span class="comment">//error</span></code></pre>
+<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><h3 id="1-ES5中的函数"><a href="#1-ES5中的函数" class="headerlink" title="1.ES5中的函数"></a>1.ES5中的函数</h3><pre><code class="markdown">function(参数，参数){
+<span class="code">    函数体</span>
+}</code></pre>
+<h3 id="2-ES6中的箭头函数"><a href="#2-ES6中的箭头函数" class="headerlink" title="2.ES6中的箭头函数"></a>2.ES6中的箭头函数</h3><ul>
+<li>一般箭头函数就是把function省略</li>
+</ul>
+<pre><code class="markdown">(参数，参数)=&gt;{
+<span class="code">    函数体</span>
+}</code></pre>
+<ul>
+<li><p>特殊情况：</p>
+<ol>
+<li>如果有且仅有1个参数，()可以省</li>
+<li>如果函数体只有一句话，而且是return，{}可以省</li>
+</ol>
+</li>
+<li><p>注意：</p>
+<ol>
+<li>箭头函数不绑定Arguments 对象</li>
+<li>箭头函数只能用于非方法函数</li>
+<li>箭头函数不能作为构造函数</li>
+<li>箭头函数没有property属性</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-1-排序大小案例"><a href="#2-1-排序大小案例" class="headerlink" title="2.1 排序大小案例"></a>2.1 排序大小案例</h4><pre><code class="javascript"><span class="comment">//从小到大排序</span>
+<span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">88</span>,<span class="number">34</span>,<span class="number">32</span>,<span class="number">11</span>];
+arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">n1,n2</span>)</span>{
+    <span class="keyword">return</span> n1-n2
+})；
+alert(arr);
+<span class="comment">//简写后</span>
+<span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">88</span>,<span class="number">34</span>,<span class="number">32</span>,<span class="number">11</span>];
+arr.sort(<span class="function">(<span class="params">n1,n2</span>)=&gt;</span>n1-n2);
+alert(arr);
+
+<span class="comment">//只有一个参数时</span>
+<span class="keyword">let</span> show=<span class="function"><span class="params">a</span>=&gt;</span>a*<span class="number">3</span>;
+alert(show(<span class="number">13</span>));<span class="comment">//39</span></code></pre>
+<h3 id="3-参数展开"><a href="#3-参数展开" class="headerlink" title="3.参数展开"></a>3.参数展开</h3><ul>
+<li>剩余参数、数组展开，也就是三个点 …</li>
+</ul>
+<ol>
+<li><p>“三个点”的第一个用途：接受剩余参数</p>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">show1</span>(<span class="params">...args</span>)</span>{
+    show2(...args);
+}
+<span class="function"><span class="keyword">function</span> <span class="title">show2</span>(<span class="params">a,b</span>)</span>{
+    alert(a+<span class="string">','</span>+b);
+}
+show1(<span class="number">12</span>,<span class="number">5</span>);<span class="comment">//12,5</span></code></pre>
+</li>
+<li><p>“三个点”的第2个用途：展开一个数组</p>
+<pre><code class="javascript"><span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">99</span>]
+<span class="comment">//...arr   =&gt;   12,5,8,99</span>
+<span class="keyword">let</span> arr2=[<span class="number">1</span>,<span class="number">3</span>,...arr,<span class="number">56</span>,<span class="number">67</span>]
+alert(arr2);<span class="comment">//1,3,12,5,8,99,56,67</span></code></pre>
+</li>
+</ol>
+<h2 id="四、数组"><a href="#四、数组" class="headerlink" title="四、数组"></a>四、数组</h2><h3 id="1-map-遍历，映射"><a href="#1-map-遍历，映射" class="headerlink" title="1.map 遍历，映射"></a>1.map 遍历，映射</h3><blockquote>
+<p>一个对一个，也就是一个个遍历进去</p>
+</blockquote>
+<pre><code class="javascript"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];
+<span class="keyword">let</span> arr2=arr.map(<span class="function"><span class="params">item</span>=&gt;</span>{
+    <span class="keyword">if</span>(item&gt;=<span class="number">3</span>){
+        <span class="keyword">return</span> <span class="literal">true</span>;
+    }<span class="keyword">else</span>{
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+});
+alert(arr2);<span class="comment">//false,false,true,true,true</span>
+
+<span class="comment">//再简写</span>
+<span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];
+<span class="keyword">let</span> arr2=arr.map(<span class="function"><span class="params">item</span>=&gt;</span>item&gt;=<span class="number">3</span>);
+alert(arr2);</code></pre>
+<h3 id="2-reduce-汇总：一堆-gt-一个"><a href="#2-reduce-汇总：一堆-gt-一个" class="headerlink" title="2.reduce 汇总：一堆 =&gt; 一个"></a>2.reduce 汇总：一堆 =&gt; 一个</h3><pre><code class="javascript"><span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">88</span>,<span class="number">37</span>,<span class="number">21</span>,<span class="number">91.17</span>,<span class="number">24</span>];
+<span class="comment">//tmp代表过程计算</span>
+<span class="keyword">let</span> sum=arr.reduce(<span class="function">(<span class="params">tmp,item,index</span>)=&gt;</span>{
+    <span class="built_in">console</span>.log(tmp,item,index);
+    <span class="comment">//12,5,1</span>
+    <span class="comment">//17,88,2</span>
+    <span class="comment">//105,37,3</span>
+    <span class="comment">//142,21,4</span>
+    <span class="comment">//163,91,5</span>
+    <span class="comment">//254,17,6</span>
+    <span class="comment">//271,24,7</span>
+    <span class="keyword">return</span> tmp+itme;
+});
+alert(sum);<span class="comment">//295</span></code></pre>
+<h3 id="3-filter-过滤，筛选"><a href="#3-filter-过滤，筛选" class="headerlink" title="3.filter 过滤，筛选"></a>3.filter 过滤，筛选</h3><pre><code class="javascript"><span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">88</span>,<span class="number">37</span>,<span class="number">21</span>,<span class="number">91</span>,<span class="number">17</span>,<span class="number">24</span>];
+<span class="keyword">let</span> arr2=arr.filter(<span class="function"><span class="params">item</span>=&gt;</span>item%<span class="number">2</span>);
+alert(arr2);<span class="comment">//5,37,21,91,17</span></code></pre>
+<h3 id="4-forEach-遍历"><a href="#4-forEach-遍历" class="headerlink" title="4.forEach 遍历"></a>4.forEach 遍历</h3><pre><code class="javascript"><span class="keyword">let</span> arr=[<span class="number">12</span>,<span class="number">5</span>,<span class="number">88</span>,<span class="number">37</span>,<span class="number">21</span>,<span class="number">91</span>,<span class="number">17</span>,<span class="number">24</span>];
+<span class="keyword">let</span> sum=<span class="number">0</span>;
+arr.forEach(<span class="function"><span class="params">item</span>=&gt;</span>{
+    sum+=item;
+});
+alert(sum);<span class="comment">//295</span></code></pre>
+<h3 id="5-Array-from-转换为真正的数组"><a href="#5-Array-from-转换为真正的数组" class="headerlink" title="5.Array.from  转换为真正的数组"></a>5.Array.from  转换为真正的数组</h3><blockquote>
+<p>类数组使用forEach遍历</p>
+</blockquote>
+<pre><code class="javascript"><span class="keyword">let</span> aDiv=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);
+<span class="comment">//aDiv是类数组(类数组有length)，如果直接aDiv.forEach(),会报错，</span>
+<span class="comment">//使用Array.from(aDiv),转换为真正的Array</span>
+<span class="built_in">Array</span>.from(aDiv).forEach(<span class="function"><span class="params">div</span>=&gt;</span>{
+    div.style.background=<span class="string">'yellow'</span>;
+});</code></pre>
+<h2 id="五、字符串"><a href="#五、字符串" class="headerlink" title="五、字符串"></a>五、字符串</h2><ol>
+<li>字符串模板(``):植入变量、任意折行</li>
+<li>${}，结合字符串模板方便</li>
+</ol>
+<pre><code class="javascript"><span class="keyword">let</span> json={<span class="attr">name</span>:<span class="string">'blue'</span>,<span class="attr">age</span>:<span class="number">18</span>};
+<span class="comment">//alert('我叫：'+jsom.name+',我今年'+json.age+'岁')</span>
+alert(<span class="string">`我叫：<span class="subst">${json.name}</span>,我今年<span class="subst">${json.age}</span>岁`</span>)；</code></pre>
+<h2 id="六、面向对象"><a href="#六、面向对象" class="headerlink" title="六、面向对象"></a>六、面向对象</h2><h3 id="1、传统面向对象"><a href="#1、传统面向对象" class="headerlink" title="1、传统面向对象"></a>1、传统面向对象</h3><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>{
+    <span class="keyword">this</span>.name=name;
+    <span class="keyword">this</span>.age=age;
+}
+Person.prototype.showName=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{
+    alert(<span class="string">'我叫'</span>+<span class="keyword">this</span>.name);
+};
+Person.prototype.showAge=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{
+    alert(<span class="string">'我'</span>+<span class="keyword">this</span>.age+<span class="string">'岁'</span>);
+}</code></pre>
+<blockquote>
+<p>当想继承父级函数时用call(),但是this对象一直在变，容易乱</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Worker</span>(<span class="params">name,age,job</span>)</span>{
+    Person.call(<span class="keyword">this</span>,name,age);
+    <span class="keyword">this</span>.job=job;
+}
+
+<span class="comment">//传统的也可以new Person()</span>
+Worker.prototype=<span class="keyword">new</span> Person();
+Worker.prototype.constructor=Worker;
+Worker.prototype.showJob=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{
+    alert(<span class="string">'我是做：'</span>+<span class="keyword">this</span>.job);
+};
+<span class="keyword">let</span> w=<span class="keyword">new</span> Worker(<span class="string">'blue'</span>,<span class="number">18</span>,<span class="string">'打杂的'</span>)；
+w.showName();
+w.showAge();
+w.showJob();</code></pre>
+<h3 id="2、ES6中的面向对象"><a href="#2、ES6中的面向对象" class="headerlink" title="2、ES6中的面向对象"></a>2、ES6中的面向对象</h3><ol>
+<li>先生成类</li>
+<li>在类中构造函数，同时加方法</li>
+<li>使用new实例化对象</li>
+</ol>
+<pre><code class="javascript"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>{
+    <span class="keyword">constructor</span>(name,age){
+        <span class="keyword">this</span>.name=name;
+        <span class="keyword">this</span>.age=age;
+    }
+    showName(){
+        alert(<span class="string">'我叫'</span>+<span class="keyword">this</span>.name);
+    }
+    showAge(){
+        alert(<span class="string">'我'</span>+<span class="keyword">this</span>.age+<span class="string">'岁'</span>)；
+    }
+}
+
+<span class="keyword">let</span> p=<span class="keyword">new</span> Person(<span class="string">'blue'</span>,<span class="number">18</span>);
+p.showName();
+p.showAge();
+
+<span class="comment">//继承父类</span>
+
+<span class="comment">//类</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">Person</span></span>{
+    <span class="comment">//构造函数</span>
+    <span class="keyword">constructor</span>(name,age,job){
+        <span class="comment">//super-超类(父类),继承父类的属性，方法是extends带过来的</span>
+        <span class="keyword">super</span>(name,age);
+        <span class="keyword">this</span>.job=job;
+    }
+    showJob(){
+        alert(<span class="string">'我是做：'</span>+<span class="keyword">this</span>.job)
+    }
+}
+
+<span class="keyword">let</span> w=<span class="keyword">new</span> Woeker(<span class="string">'blue'</span>,<span class="number">18</span>,<span class="string">'打杂的'</span>);
+w.showName();
+w.showAge();
+w.showJob();</code></pre>
+<h3 id="3、this"><a href="#3、this" class="headerlink" title="3、this"></a>3、this</h3><blockquote>
+<p>在普通函数中，根据调用我的的人this老变，而在ES6中，this指向window恒定不变，除非加上bind()来改变指向，但bind()在箭头函数中不变。</p>
+</blockquote>
+<ul>
+<li>一般函数</li>
+</ul>
+<blockquote>
+<p>当给函数一个返回对象是，this指向这个对象<br>一般函数this默认指向window对象，但可以给window对象增加一个a属性。</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>{
+    <span class="keyword">this</span>.a=<span class="number">5</span>;
+}
+a();
+<span class="built_in">console</span>.log(<span class="built_in">window</span>.a);<span class="comment">//5</span></code></pre>
+<ul>
+<li>ES6箭头函数的this指向</li>
+</ul>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">s</span>(<span class="params"></span>)</span>{
+    <span class="keyword">this</span>.a=<span class="number">5</span>;
+    o=<span class="function"><span class="params">()</span>=&gt;</span>(<span class="keyword">this</span>.b=<span class="number">6</span>);
+    o();
+}
+<span class="keyword">var</span> s1=<span class="keyword">new</span> s();
+<span class="built_in">console</span>.log(s1);<span class="comment">//{a:5,b:6};</span>
+<span class="built_in">console</span>.log(<span class="built_in">window</span>.a);<span class="comment">//undefined</span>
+<span class="built_in">console</span>.log(<span class="built_in">window</span>.b);<span class="comment">//undefined</span></code></pre>
+<blockquote>
+<p>我们看到箭头函数的执行环境是s函数，并且指向新创建的对象，箭头函数中的this便也指向新创建的对象。<br>所以：箭头函数的this指向和它的执行环境中的this保持一致，也就是说es6箭头函数this指向定义这个函数的外层代码的this。</p>
+</blockquote>
+<ul>
+<li>es6箭头函数没有外层加上事件方法或使用new创建新对象时，this还是指向window</li>
+</ul>
+<pre><code class="javascript"><span class="comment">//1.默认还是window</span>
+<span class="function"><span class="keyword">function</span> <span class="title">s</span>(<span class="params"></span>)</span>{
+    <span class="keyword">this</span>.a=<span class="number">5</span>;
+    o=<span class="function"><span class="params">()</span>=&gt;</span>{<span class="keyword">this</span>.b=<span class="number">6</span>};
+    o();
+}
+s();
+<span class="built_in">console</span>.log(<span class="built_in">window</span>.a);<span class="comment">//5</span>
+<span class="built_in">console</span>.log(<span class="built_in">window</span>.b);<span class="comment">//6</span>
+
+<span class="comment">//2.添加函数事件方法,下面是返回到document对象</span>
+<span class="built_in">document</span>.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+    <span class="keyword">let</span> a=<span class="function"><span class="params">()</span>=&gt;</span>{
+        alert(<span class="keyword">this</span>);<span class="comment">//[object HTMLDocument]</span>
+    };
+    <span class="keyword">let</span> oBtn=<span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);
+    oBtn.onclick=a;
+}
+<span class="comment">//这种返回对象也是指向window对象</span>
+<span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];
+arr.a=<span class="function"><span class="params">()</span>=&gt;</span>{
+    alert(<span class="keyword">this</span>);<span class="comment">//[object window]</span>
+}
+arr.a();
+<span class="comment">//</span>
+b=<span class="function"><span class="params">()</span>=&gt;</span>{
+    alert(<span class="keyword">this</span>)<span class="comment">//[object window]</span>
+}
+b();
+</code></pre>
+<h3 id="4、bind-如何使用"><a href="#4、bind-如何使用" class="headerlink" title="4、bind()如何使用"></a>4、bind()如何使用</h3><blockquote>
+<p>给函数定死一个this<br>JavaScript新手经常犯的一个错误是将一个方法从对象中拿出来，然后再调用，希望方法中的 this 是原来的对象（比如在回调中传入这个方法）。如果不做特殊处理的话，一般会丢失原来的对象。从原来的函数和原来的对象创建一个绑定函数</p>
+</blockquote>
+<pre><code class="javascript"><span class="comment">//如：本来指向document,加bind指向p</span>
+<span class="built_in">document</span>.onclick=p.showName.bind(p)</code></pre>
+<pre><code class="javascript"><span class="keyword">var</span> <span class="built_in">module</span> = {
+  x: <span class="number">42</span>,
+  getX: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    <span class="keyword">return</span> <span class="keyword">this</span>.x;
+  }
+}
+<span class="keyword">var</span> unboundGetX = <span class="built_in">module</span>.getX;
+<span class="built_in">console</span>.log(unboundGetX()); <span class="comment">// undefined</span>
+<span class="keyword">var</span> boundGetX = unboundGetX.bind(<span class="built_in">module</span>); <span class="comment">//绑定对象</span>
+<span class="built_in">console</span>.log(boundGetX());<span class="comment">//42</span></code></pre>
+<blockquote>
+<p>bind()在箭头函数里面无效</p>
+</blockquote>
+<pre><code class="javascript"><span class="comment">//箭头函数本身this指向document对象，是bind()无效</span>
+<span class="built_in">document</span>.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+    <span class="keyword">let</span> a=<span class="function"><span class="params">()</span>=&gt;</span>{
+        alert(<span class="keyword">this</span>);<span class="comment">//[object HTMLDocument]</span>
+    };
+    <span class="keyword">let</span> oBtn=<span class="built_in">document</span>.getElementById(<span class="string">'btn1'</span>);
+    oBtn.onclick=a.bind(<span class="number">12</span>);
+}</code></pre>
+<h2 id="七、promise"><a href="#七、promise" class="headerlink" title="七、promise"></a>七、promise</h2><h3 id="1、ajax"><a href="#1、ajax" class="headerlink" title="1、ajax"></a>1、ajax</h3><ul>
+<li>一般异步</li>
+</ul>
+<pre><code class="javascript">$.ajax({
+    url:<span class="string">'/banner_data'</span>,
+    success(banners){
+        $ajax({
+            url:<span class="string">'/user_data'</span>,
+            success(user){
+                ...
+            }
+            error(){
+                alert(<span class="string">'获取数据失败'</span>);
+            }
+        })
+    }
+    error(){
+        alert(<span class="string">'获取数据失败'</span>)
+    }
+})</code></pre>
+<ul>
+<li>一般同步</li>
+</ul>
+<pre><code class="javascript"><span class="keyword">let</span> banner=$.ajax({<span class="attr">url</span>:<span class="string">'/banner_data'</span>});
+<span class="keyword">let</span> items=$.ajax({<span class="attr">url</span>:<span class="string">'/item_data'</span>});
+<span class="keyword">let</span> users=$.ajax({<span class="attr">url</span>:<span class="string">'/uers_data'</span>});</code></pre>
+<h3 id="promise一般操作"><a href="#promise一般操作" class="headerlink" title="promise一般操作"></a>promise一般操作</h3><ul>
+<li>使用promise实现异步的同步操作</li>
+</ul>
+<pre><code class="javascript"><span class="comment">//一个</span>
+<span class="keyword">let</span> p=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+    reslove();
+    reject();
+});
+p.then(<span class="function"><span class="params">()</span>=&gt;</span>{},()=&gt;{});
+
+<span class="comment">//多个</span>
+<span class="built_in">Promise</span>.all([
+    $.ajax(<span class="string">'/banner_data'</span>),
+    $.ajax(<span class="string">'/item_data'</span>),
+    $.ajax(<span class="string">'/user_data'</span>),
+    $.ajax(<span class="string">'/news_data'</span>)
+]).then(<span class="function"><span class="params">arr</span>=&gt;</span>{
+    <span class="keyword">let</span> [banners,items,users,news]=arr;
+},err=&gt;{})
+
+<span class="number">1</span>、promise作用：解除异步操作
+<span class="number">2</span>、promise局限性：带逻辑的异步操作麻烦</code></pre>
+<blockquote>
+<p>注意：promise.all([]).then(arr=&gt;{},err=&gt;{})中，成功才执行arr=&gt;{},失败执行err=&gt;{},和resolve、reject一样</p>
+</blockquote>
+<h3 id="2、promise处理单个数据案例"><a href="#2、promise处理单个数据案例" class="headerlink" title="2、promise处理单个数据案例"></a>2、promise处理单个数据案例</h3><pre><code class="javascript"><span class="keyword">let</span> p=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+    <span class="comment">//resolve         成功-&gt;执行</span>
+    <span class="comment">//reject          失败-&gt;执行</span>
+    $.ajax({
+        url:<span class="string">'/1.txt'</span>,
+        dataType:<span class="string">'json'</span>,
+        success(json){
+            resolve(json);
+        },
+        error(err){
+            reject(err)
+        }
+    })
+});
+p.then(<span class="function"><span class="params">json</span>=&gt;</span>{
+    alert(<span class="string">'成功'</span>)；
+    <span class="built_in">console</span>.log(json);
+},err=&gt;{
+    alert(<span class="string">'失败'</span>)
+})</code></pre>
+<h3 id="3、promise处理多个数据案例"><a href="#3、promise处理多个数据案例" class="headerlink" title="3、promise处理多个数据案例"></a>3、promise处理多个数据案例</h3><pre><code class="javascript"><span class="keyword">let</span> p=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+    $.ajax({
+        url:<span class="string">'1.txt'</span>,
+        dataType:<span class="string">'json'</span>,
+        success(json){
+            resolve(json)
+        }
+        error(err){
+            reject(err)
+        }
+    })
+});
+<span class="keyword">let</span> p2=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+    $.ajax({
+        url:<span class="string">'2.txt'</span>,
+        dataType:<span class="string">'json'</span>
+        success(json){
+            resolve(json)
+        }
+        error(err){
+            reject(err)
+        }
+    })
+});
+<span class="keyword">let</span> p3=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+    $.ajax({
+        url:<span class="string">'3.txt'</span>,
+        dataType:<span class="string">'json'</span>
+        success(json){
+            resolve(json)
+        },
+        error(err){
+            reject(err)
+        }
+    })
+});
+
+promise.all([p,p2,p3]).then(<span class="function"><span class="params">arr</span>=&gt;</span>{
+    <span class="keyword">let</span> [a,b,c]=arr;
+    alert(<span class="string">'成功'</span>);
+    <span class="built_in">console</span>.log(a,b,c);
+},err=&gt;{
+    alert(<span class="string">'失败'</span>)
+})；</code></pre>
+<h3 id="4、promise的方法"><a href="#4、promise的方法" class="headerlink" title="4、promise的方法"></a>4、promise的方法</h3><ol>
+<li>promise.all().then(),all中所有都成功才执行后面then()</li>
+<li>peomise.race().then(),只要有一个完成就执行后面</li>
+</ol>
+<h2 id="八、generator"><a href="#八、generator" class="headerlink" title="八、generator"></a>八、generator</h2><ul>
+<li>promise的升级版generator,可以暂停yield，过渡阶段产品</li>
+<li>generator函数：跟普通函数类似，只是加个 * ，同时返回对象</li>
+</ul>
+<blockquote>
+<p>执行一个next(),就执行yield上面(右边)的，再次next()就执行yield下面(左边)的。<br>yield要执行两次next(),这样可以给预处理时间。</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> *<span class="title">show</span>(<span class="params"></span>)</span>{
+    alert(<span class="string">'aaaa'</span>);
+    <span class="keyword">yield</span>;
+    alert(<span class="string">'bbbb'</span>);
+}
+<span class="comment">//gen是iterator(迭代)对象</span>
+<span class="keyword">let</span> gen=show();<span class="comment">//返回对象</span>
+gen.next(); <span class="comment">///aaaa</span>
+setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+    gen.next();  <span class="comment">//bbbb</span>
+},<span class="number">5000</span>);</code></pre>
+<blockquote>
+<p>并且yield两边互不干扰,先执行完yield右边，才赋值给a</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> *<span class="title">show</span>(<span class="params"></span>)</span>{
+    alert(<span class="string">'aaa'</span>);
+    <span class="keyword">let</span> a=<span class="keyword">yield</span>;
+    alert(<span class="string">'bbb'</span>+a);
+}
+<span class="comment">//pp是iterator(迭代)对象</span>
+<span class="keyword">let</span> pp=show();
+pp.next(<span class="number">12</span>);<span class="comment">//aaa</span>
+pp.next(<span class="number">12</span>);<span class="comment">//bbb12</span></code></pre>
+<blockquote>
+<p>yield可以返回return</p>
+</blockquote>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> *<span class="title">show</span>(<span class="params"></span>)</span>{
+    alert(<span class="string">'aaa'</span>);  <span class="comment">//1</span>
+    <span class="keyword">yield</span> <span class="number">56</span>;
+    alert(<span class="string">'bbb'</span>);  <span class="comment">//3</span>
+    <span class="keyword">return</span> <span class="number">89</span>;
+}
+<span class="comment">//下面gen是iterator(迭代)对象</span>
+<span class="keyword">let</span> gen=show();
+<span class="keyword">let</span> res1=gen.next();<span class="built_in">console</span>.log(res1);<span class="comment">//2 {value:56,done:false},done为false,因为还没执行完</span>
+<span class="keyword">let</span> res2=gen.next();<span class="built_in">console</span>.log(res2);<span class="comment">//3 {value:89,done:true}</span></code></pre>
+<blockquote>
+<p>注意：generator函数不能写成箭头函数</p>
+</blockquote>
+<h2 id="九、async"><a href="#九、async" class="headerlink" title="九、async"></a>九、async</h2><blockquote>
+<p>generator的升级版，因为generator是过渡阶段，所以async和generator相似</p>
+</blockquote>
+<ul>
+<li>generator:</li>
+</ul>
+<pre><code class="markdown">function *xxx(){
+<span class="code">    ...</span>
+<span class="code">    let res=yield xxx;</span>
+<span class="code">    ...</span>
+<span class="code">    let res2=yield xxx;</span>
+<span class="code">    ...</span>
+}</code></pre>
+<ul>
+<li>async</li>
+</ul>
+<blockquote>
+<p>如果await右边不是异步操作(会检测)，就会直接执行，而generator会直接执行下面个。<br>一般await右边会跟着generator或promise</p>
+</blockquote>
+<pre><code class="markdown">async function xxx(){
+<span class="code">    ...</span>
+<span class="code">    let res=await xxx;</span>
+<span class="code">    ...</span>
+<span class="code">    let res2=await xxx;</span>
+<span class="code">    ...</span>
+}
+
+//也就是先执行右边，然后赋值给左边
+async function(){
+<span class="code">    ...</span>
+<span class="code">    let 结果 = await 异步操作(promise($.ajax()本身就是promise对象)、generator、另一个async函数)</span>
+<span class="code">    ...</span>
+}</code></pre>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">sec</span>)</span>{
+    <span class="keyword">return</span> <span class="keyword">new</span> promise(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{
+        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+            resolve()
+        },sec*<span class="number">1000</span>)
+    })
+};
+
+<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>{
+    alert(<span class="string">'a'</span>);
+    <span class="keyword">await</span> sleep(<span class="number">1</span>);
+    alert(<span class="string">'b'</span>);
+    <span class="keyword">await</span> sleep(<span class="number">2</span>);
+    alert(<span class="string">'c'</span>)
+}
+show();</code></pre>
+<ul>
+<li>async 处理逻辑更方便</li>
+</ul>
+<pre><code class="javascript">(<span class="keyword">async</span>()=&gt;{
+    <span class="keyword">let</span> data1=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'1.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+    <span class="keyword">if</span>(data1.a+data1.b&lt;<span class="number">10</span>){
+        <span class="keyword">let</span> data2=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'2.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+        alert(data2[<span class="number">0</span>])
+    }<span class="keyword">else</span>{
+        <span class="keyword">let</span> data3=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'3.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+        alert(data3.name)
+    }
+})()
+<span class="comment">//注：()()为匿名函数，可以直接执行</span></code></pre>
+<h3 id="async错误处理"><a href="#async错误处理" class="headerlink" title="async错误处理"></a>async错误处理</h3><pre><code class="javascript"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>{
+    <span class="keyword">try</span>{
+    <span class="keyword">let</span> data1=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'1.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+    <span class="keyword">let</span> data2=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'2.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+    <span class="keyword">let</span> data3=<span class="keyword">await</span> $.ajax({<span class="attr">url</span>:<span class="string">'3.txt'</span>,<span class="attr">dataType</span>:<span class="string">'json'</span>})
+    }<span class="keyword">catch</span>(e){
+        alert(<span class="string">'有问题'</span>);
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'有错误'</span>);
+    }
+}
+show();</code></pre>
+<ul>
+<li>不允许子在主线程里异步操作，会卡死</li>
+</ul>
+<h2 id="十、babel"><a href="#十、babel" class="headerlink" title="十、babel"></a>十、babel</h2><blockquote>
+<p>把ES6编译成ES5</p>
+</blockquote>
+<h3 id="1、安装babel"><a href="#1、安装babel" class="headerlink" title="1、安装babel"></a>1、安装babel</h3><ol>
+<li><p>cnpm</p>
+<blockquote>
+<p>npm原版慢，可以利用cnpm安装。<br>cnpm淘宝源：<a href="http://npm.taobao.org/">http://npm.taobao.org/</a><br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org">https://registry.npm.taobao.org</a></p>
+</blockquote>
+</li>
+<li><p>先创建文件babel</p>
+<p> <img src="image/babel1.png" alt="babel1"></p>
+</li>
+<li><p>打开package.json</p>
+<p> <img src="image/babel2.png" alt="babel2"></p>
+</li>
+<li><p>安装 babel cli</p>
+<p> <img src="image/babel3.png" alt="babel3"></p>
+<blockquote>
+<p>这时babel多了一个node_modules文件，这node_modules不能拷贝，但不小心删掉node_modules中的一些文件时，使用 cnom i 恢复</p>
+</blockquote>
+<p> <img src="image/babel4.png" alt="babel4"></p>
+</li>
+<li><p>创建 .babelrc文件，写入下面内容，最好使用编辑器创建，到外面创建，可能创建不了</p>
+<p> <img src="image/babel5.png" alt="babel5"></p>
+<blockquote>
+<p>这时package.json多了一些</p>
+</blockquote>
+<p> <img src="image/babel6.png" alt="babel6"></p>
+</li>
+<li><p>安装 babel-preset-env -D</p>
+<p> <img src="image/babel7.png" alt="babel7"></p>
+</li>
+</ol>
+<h3 id="2、编译"><a href="#2、编译" class="headerlink" title="2、编译"></a>2、编译</h3><ol>
+<li><p>添加启动编译脚本</p>
+<blockquote>
+<p>如，修改成：”build”:”babel js -d build”<br>-d 是输出，js是输出到build</p>
+</blockquote>
+<p> <img src="image/babel8.png" alt="babel8"></p>
+</li>
+<li><p>启动</p>
+</li>
+</ol>
+<blockquote>
+<p>npm run build</p>
+</blockquote>
+<ul>
+<li>这时babel目录下多了一个编译好的build文件</li>
+</ul>
+<h4 id="拓展一下，添加任意启动项"><a href="#拓展一下，添加任意启动项" class="headerlink" title="拓展一下，添加任意启动项"></a>拓展一下，添加任意启动项</h4><ul>
+<li>修改script文件</li>
+</ul>
+<blockquote>
+<p>如添加启动node的<br>“start”:”node server.js –port=80 -s -o a.log”,<br>启动：npm run start</p>
+</blockquote>
+<h2 id="十一、数据交互"><a href="#十一、数据交互" class="headerlink" title="十一、数据交互"></a>十一、数据交互</h2><h3 id="1、数据交互介绍"><a href="#1、数据交互介绍" class="headerlink" title="1、数据交互介绍"></a>1、数据交互介绍</h3><ul>
+<li>数据交互的方法：</li>
+</ul>
+<ol>
+<li>表单：最简单，最基本，http数据请求其实都是表单</li>
+<li>ajax:不用刷新，ajax不可以跨域，但麻烦，要借助。。。</li>
+<li>jsonp：直接跨域，安全性差，越开越少，算是中间产物吧。jsonp只能发起get请求</li>
+<li>webSocket：快，双向，跨域</li>
+</ol>
+<ul>
+<li>系统模块：</li>
+</ul>
+<ol>
+<li>服务器完成–http、fs、流操作</li>
+<li>webSocket–socket.io</li>
+<li>formData–ajax2.0,文件上传，进度</li>
+<li>cors跨域</li>
+</ol>
+<h3 id="2、跨域"><a href="#2、跨域" class="headerlink" title="2、跨域"></a>2、跨域</h3><ul>
+<li>什么是跨域</li>
+</ul>
+<ol>
+<li>不同源就是跨域，比如<a href="http://www.baidu.com跳到www.360.cn。但是，a标签点击去第三方网站不是跨域，是指数据调到第三方是跨域">www.baidu.com跳到www.360.cn。但是，a标签点击去第三方网站不是跨域，是指数据调到第三方是跨域</a></li>
+<li>xxs 跨脚本攻击</li>
+<li>跨域有风险</li>
+</ol>
+<ul>
+<li>什么时候必须跨域</li>
+</ul>
+<ol>
+<li>一个网站有多个域名，虽然是同一个网站，但游览器不知道。</li>
+<li>第三方数据，如网站页面上的qq登入，需要发送校验请求。</li>
+</ol>
+<ul>
+<li>安全性：分为两块</li>
+</ul>
+<ol>
+<li>系统安全性</li>
+<li>代码</li>
+</ol>
+<h3 id="3、表单"><a href="#3、表单" class="headerlink" title="3、表单"></a>3、表单</h3><ol>
+<li><p>属性</p>
+<ol>
+<li>action 提交到哪</li>
+<li>method 方式–GET、PSOT，不常见 PUT、HEADER、DELETE</li>
+<li>name  必须加，可以重复</li>
+<li>submit按钮  提交</li>
+</ol>
+</li>
+<li><p>数据提交方法</p>
+<ul>
+<li><p>GET  数据放在URL里面</p>
+<ol>
+<li>容量有限(&lt;=32k)</li>
+<li>看得见</li>
+<li>有缓存</li>
+</ol>
+</li>
+<li><p>POST  数据放在http-body里面</p>
+<ol>
+<li>容量大(&lt;=1G)</li>
+<li>看不见</li>
+<li>不缓存</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>get、post安全性完全一样，跟看不看得见无关，https才是真安全</p>
+</li>
+<li><p>表单重复提交处理</p>
+<ol>
+<li>开始提交的时候–禁用submit</li>
+<li>完成(成功，失败)–启用submit</li>
+</ol>
+</li>
+<li><p>content-type 有哪些类型</p>
+<ol>
+<li>text/plain    纯文本  用不着</li>
+<li>application/x-www-form-urlencoded &amp;&amp;&amp;的方式  简单数据</li>
+<li>multipart/form-data   定界符分割各个数据  文件上传</li>
+</ol>
+</li>
+</ol>
+<h3 id="4、ajax"><a href="#4、ajax" class="headerlink" title="4、ajax"></a>4、ajax</h3><ul>
+<li>ajax简单封装，这里只是异步没有考虑同步，当同步都淘汰了</li>
+</ul>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">options</span>)</span>{
+    options=options||{};
+    <span class="comment">//可以设置默认为get方式</span>
+    options.type=options.type||<span class="string">'get'</span>;
+    options.data=options.data||{};
+    options.dataType=options.dataType||<span class="string">'text'</span>;
+
+    <span class="comment">//不兼容IE6</span>
+    <span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();
+            <span class="comment">//兼容IE6</span>
+            <span class="comment">//if(window.XMLHttpRequest){</span>
+            <span class="comment">//    var xhr=new XMLHttpRequest();</span>
+            <span class="comment">//}else{</span>
+            <span class="comment">//   var xhr=new ActiveXObject ('Microsoft.XMLHttp');</span>
+            <span class="comment">//}</span>
+
+    <span class="comment">//数据组装，就是data数据收集起来</span>
+    <span class="keyword">let</span> arr=[];
+    <span class="keyword">for</span>(<span class="keyword">let</span> name <span class="keyword">in</span> options.data){
+        <span class="comment">//encodeURLComponent() 把中文和特殊符号编码成英文</span>
+        arr.push(<span class="string">`<span class="subst">${encodeURLComponent(name)}</span>=<span class="subst">${encodeURLComponent(options.data[name])}</span>`</span>);
+    }
+    <span class="keyword">let</span> strData=arr.join(<span class="string">'&amp;'</span>);
+    <span class="comment">//判断传输方式,这里只用了post和get,没有考虑其他方式，有点缺陷，</span>
+    <span class="keyword">if</span>(options.type==<span class="string">'post'</span>){
+        xhr.open(<span class="string">'POST'</span>,options.url,<span class="literal">true</span>);
+        xhr.setRequestHeader(<span class="string">'content-type'</span>,<span class="string">'application/x-www-form-urlencoded'</span>);
+        xhr.send(strData)
+    }<span class="keyword">else</span>{
+        xhr.open(<span class="string">'GET'</span>,options.url+<span class="string">'?'</span>+strData,<span class="literal">true</span>);
+        xhr.send();
+    }
+
+    <span class="comment">//接收</span>
+    xhr.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+        <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>){
+            <span class="comment">//成功——2xx、304</span>
+            <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span> &amp;&amp; xhr.status&lt;<span class="number">300</span> ||xhr.status==<span class="number">304</span>){
+                <span class="keyword">let</span> data=xhr.responseText;
+                <span class="keyword">switch</span>(options.dataType){
+                    <span class="keyword">case</span> <span class="string">'josn'</span>:
+                    <span class="comment">//兼容JOSN，低版本游览器不支持JSON,JSON.parse()是解析</span>
+                    <span class="keyword">if</span>(<span class="built_in">window</span>.JSON &amp;&amp; <span class="built_in">JSON</span>.parse){
+                        data=<span class="built_in">JSON</span>.parse(data);
+                    }<span class="keyword">else</span>{
+                        data=<span class="built_in">eval</span>(<span class="string">'('</span>+str+<span class="string">')'</span>)
+                    }
+                    <span class="keyword">break</span>;
+                    <span class="keyword">case</span> <span class="string">'xml'</span>:
+                    data=xhr.responseXML;
+                    <span class="keyword">break</span>;
+                }
+                options.success &amp;&amp; options.success(data);
+            }<span class="keyword">else</span>{
+                options.error &amp;&amp; options.error();
+            }
+        }
+    }
+
+}</code></pre>
+<h4 id="实例操作"><a href="#实例操作" class="headerlink" title="实例操作"></a>实例操作</h4><pre><code class="html"><span class="meta">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="name">html</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">head</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/ajax.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8&gt;&lt;/script&gt;</span></span>
+<span class="tag"><span class="string">        &lt;script&gt;</span></span>
+<span class="tag"><span class="string">            window.onload=function (){</span></span>
+<span class="tag"><span class="string">                let oBtn=document.getElementById('btn1')</span></span>
+<span class="tag"><span class="string">                oBtn.onclick=function (){</span></span>
+<span class="tag"><span class="string">                    ajax({</span></span>
+<span class="tag"><span class="string">                        url:'1.php',</span></span>
+<span class="tag"><span class="string">                        data:{a:34,b:88},</span></span>
+<span class="tag"><span class="string">                        //dataType:'json',</span></span>
+<span class="tag"><span class="string">                        success(data){</span></span>
+<span class="tag"><span class="string">                            alert(data);</span></span>
+<span class="tag"><span class="string">                            console.log(data);</span></span>
+<span class="tag"><span class="string">                        },</span></span>
+<span class="tag"><span class="string">                        error(){</span></span>
+<span class="tag"><span class="string">                            alert('错了')</span></span>
+<span class="tag"><span class="string">                        }</span></span>
+<span class="tag"><span class="string">                    })</span></span>
+<span class="tag"><span class="string">                }</span></span>
+<span class="tag"><span class="string">            }</span></span>
+<span class="tag"><span class="string">        &lt;/script&gt;</span></span>
+<span class="tag"><span class="string">    &lt;/head&gt;</span></span>
+<span class="tag"><span class="string">    &lt;body&gt;</span></span>
+<span class="tag"><span class="string">    &lt;input type="</span><span class="attr">button</span>" <span class="attr">value</span>=<span class="string">"按钮"</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>
+<span class="xml">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span>
+<span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></code></pre>
+<h3 id="5、jsonp"><a href="#5、jsonp" class="headerlink" title="5、jsonp"></a>5、jsonp</h3><ol>
+<li>jsonp:越来越少用，算是中间产物，</li>
+<li>跨域</li>
+<li>jsonp就是创建了script标签，往里面塞东西</li>
+<li>安全性问题————过于开放，安全性低</li>
+<li>目前只知道如百度给个搜索链接，利用自定义show函数搜索百度库里的东西</li>
+</ol>
+<pre><code class="markdown"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span>
+<span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span>
+  <span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span>
+<span class="code">    &lt;meta charset="utf-8"&gt;</span>
+<span class="code">    &lt;title&gt;&lt;/title&gt;</span>
+<span class="code">    &lt;script&gt;</span>
+<span class="code">    function show(json){</span>
+<span class="code">      let oUl=document.getElementById('ul1');</span>
+
+<span class="code">      oUl.innerHTML='';</span>
+<span class="code">      json.s.forEach(str=&gt;{</span>
+<span class="code">        let oLi=document.createElement('li');</span>
+
+<span class="code">        oLi.innerHTML=str;</span>
+
+<span class="code">        oUl.appendChild(oLi);</span>
+<span class="code">      });</span>
+<span class="code">    }</span>
+
+<span class="code">    window.onload=function (){</span>
+<span class="code">      let oTxt=document.getElementById('txt1');</span>
+
+<span class="code">      oTxt.oninput=function (){</span>
+<span class="code">        let oS=document.createElement('script');//encodeURIComponent();把中文转换为英文</span>
+<span class="code">        oS.src=`https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${encodeURIComponent(oTxt.value)}&amp;cb=show`;</span>
+
+<span class="code">        document.head.appendChild(oS);</span>
+<span class="code">      };</span>
+<span class="code">    };</span>
+<span class="code">    &lt;/script&gt;</span>
+  <span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span>
+  <span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span>
+<span class="code">    &lt;input type="text" id="txt1"&gt;</span>
+<span class="code">    &lt;ul id="ul1"&gt;&lt;/ul&gt;</span>
+  <span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span>
+<span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></code></pre>
+<p>页面效果<br><img src="image/jsonp1.png" alt="jsonp1.png"></p>
+<h2 id="十二、通信相关"><a href="#十二、通信相关" class="headerlink" title="十二、通信相关"></a>十二、通信相关</h2><h3 id="1、http"><a href="#1、http" class="headerlink" title="1、http"></a>1、http</h3><blockquote>
+<p>http:容易攻击<br>https:加入security,安全<br>网站被恶意挂入广告，可能是dns被污染了，跟前端无关，是运营商的事</p>
+</blockquote>
+<ol>
+<li>http 1.0 特点是一次性连接</li>
+<li>http 1.1 跟1.0版本没区别，就是多了保持连接，比如请求一个页面，一直保持连接，当再次请求时，就不需要那么麻烦，再次连接，性能提升</li>
+<li>http 2.0<ol>
+<li>还是草案</li>
+<li>强制https</li>
+<li>自带双向通信</li>
+<li>提供协议级的多路复用(多路复用：就是一个连接之内可以同时传输多个东西，多个数据可以在一个连接内传输)</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>http协议</li>
+</ul>
+<blockquote>
+<p>目前最权威的是 frc http<br>rfc:一系列以编号排定的文件，不是一个组织，目前有isoc赞助发行</p>
+</blockquote>
+<ul>
+<li>三次握手，四次分手</li>
+</ul>
+<blockquote>
+<p>1.客户端连接请求，2.服务器接收请求，3.客户端发送请求，加上第4.就是四次分手，服务器发送数据</p>
+</blockquote>
+<ul>
+<li>http消息（头，体）</li>
+</ul>
+<pre><code class="markdown">
+<span class="code">           |------------------|</span>
+<span class="code">         头|  GET             |  &lt;=32k</span>
+<span class="code">           |                  |</span>
+<span class="code">           |————————————————-—|</span>
+<span class="code">           |                  |</span>
+<span class="code">           |   POST           |</span>
+  body/体  |                  |  <span class="xml"><span class="tag">&lt;<span class="name">=1G</span></span></span>
+<span class="xml">           |                  |</span>
+<span class="xml">           |                  |</span>
+<span class="xml">           |                  |</span>
+<span class="xml">           |                  |</span>
+<span class="xml">           |——————————————————-</span>
+<span class="xml">            -------&gt;</span>requset
+客户端                                 服务器
+
+<span class="code">                response&lt;-------</span>
+<span class="code">           |----------------- -|</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |————————————————-—|</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |                  |</span>
+<span class="code">           |——————————————————|</span></code></pre>
+<h3 id="2、OSI"><a href="#2、OSI" class="headerlink" title="2、OSI"></a>2、OSI</h3><ul>
+<li><p>OSI七层交换“参考”模型 低到高</p>
+<ol>
+<li>物理层     物理学家、通信工程–材料，电压</li>
+<li>链路层     内网寻址   ARP、ICMP协议（如：ping通）</li>
+<li>网络层     外网寻址   IP  </li>
+<li>传输层     通信稳定性 TCP UDP</li>
+<li>会话层     –记录装态</li>
+<li>表示层     –统一各个网络结构  后来由传输层代替了</li>
+<li>应用层     应用细节  HTTP FTP SMTP POP3</li>
+</ol>
+</li>
+<li><p>五层模型</p>
+<ol>
+<li>物理层</li>
+<li>链路层</li>
+<li>网络层</li>
+<li>传输层</li>
+<li>应用层</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>无状态通信：服务器记不得客户端是否访问过</p>
+</blockquote>
+<ul>
+<li><p>TCP–用户控制协议   文件下载，聊天</p>
+<ol>
+<li>保证到达</li>
+<li>保证质量</li>
+<li>保证顺序</li>
+<li>面向连接</li>
+<li>游戏卡顿是基于TCP</li>
+<li>HTTP是应用层协议，是基于TCP</li>
+</ol>
+</li>
+<li><p>UDP–用户数据报协议   对质量没有绝对要求，对延迟很高要求   IP电话 视频直播</p>
+<ol>
+<li>不保证到达</li>
+<li>不保证质量</li>
+<li>不保证顺序</li>
+<li>面向无连接</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>应用层 消息<br>数据链路层 帧<br>网络层  数据报</p>
+</blockquote>
