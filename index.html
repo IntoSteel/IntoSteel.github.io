@@ -165,6 +165,158 @@
             
 
   
+    <article id="post-Ajax基础操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class=" article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	      <a class="article-title" href="/2019/08/23/Ajax基础操作/">Ajax基础操作</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/08/23/Ajax基础操作/" class="archive-article-date">
+        <time datetime="2019-08-23T01:25:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="ajax介绍"><a href="#ajax介绍" class="headerlink" title="ajax介绍"></a>ajax介绍</h2><ol>
+<li>ajax   性能低 ，单向通信。</li>
+<li>ajax单向，只能游览器（客户端）单向请求服务器，当服务器数据改变时，不会通知客户端,也就不能得到</li>
+<li>webSocket  性能高 ，双向同信  甚至可以兼容IE6。</li>
+<li>webSocket 双向，服务器数据改变，可以得知</li>
+<li>有一个定律，但凡好的东西，都不兼容，可恨</li>
+</ol>
+<h2 id="一、Ajax的步骤分为四步"><a href="#一、Ajax的步骤分为四步" class="headerlink" title="一、Ajax的步骤分为四步"></a>一、Ajax的步骤分为四步</h2><ol>
+<li>创建XMLHttpRequest这个对象，这个步骤中需要注意兼容处理</li>
+<li>准备发送</li>
+<li>执行发送</li>
+<li>设置回调函数</li>
+</ol>
+<blockquote>
+<p>xhr.responseText 文本 </p>
+<p>xhr.responseXML  XML数据</p>
+</blockquote>
+<h2 id="二、表单验证"><a href="#二、表单验证" class="headerlink" title="二、表单验证"></a>二、表单验证</h2><h3 id="一、post和get两中提交方式"><a href="#一、post和get两中提交方式" class="headerlink" title="一、post和get两中提交方式"></a>一、post和get两中提交方式</h3><blockquote>
+<p>一般前端页面，会根据服务器开发人员开发好的接口之后，所提供的接口文档，然后根据接口文档所提供的获取什么数据方式，访问什么地址，传入什么参数等</p>
+</blockquote>
+<ul>
+<li>如<br><img src="/images/ajax1.jpg" alt="ajax1"></li>
+</ul>
+<h3 id="二、表单注册页面案例"><a href="#二、表单注册页面案例" class="headerlink" title="二、表单注册页面案例"></a>二、表单注册页面案例</h3><p><img src="/images/ajax2.png" alt="ajax2"><br><img src="/images/ajax3.png" alt="ajax3"></p>
+<blockquote>
+<p>checkUsername.php:  获取提交数据：$_GET 和 $_POST 的两种方式<br><img src="/images/ajax4.png" alt="ajax4"></p>
+</blockquote>
+<h2 id="三、数据格式"><a href="#三、数据格式" class="headerlink" title="三、数据格式"></a>三、数据格式</h2><ol>
+<li>什么是数据格式：<br><img src="/images/ajax5.png" alt="ajax5"></li>
+<li>xml格式:<br><img src="/images/ajax6.png" alt="ajax6"><br><img src="/images/ajax7.png" alt="ajax7"><ol>
+<li>例如<br><img src="/images/ajax9.png" alt="ajax9"><br><img src="/images/ajax10.png" alt="ajax10"></li>
+</ol>
+</li>
+</ol>
+<p><strong>缺点：体积大，传输慢，元数据太多，解析不方便</strong></p>
+<ol start="3">
+<li>json数据格式：<br><img src="/images/ajax8.png" alt="ajax8"></li>
+</ol>
+<p><strong>优点：体积小，传输快，解析方便</strong></p>
+<h2 id="四、同步异步"><a href="#四、同步异步" class="headerlink" title="四、同步异步"></a>四、同步异步</h2><blockquote>
+<p>第二部准备发送操作xhr.open中的布尔值决定同步异步方式</p>
+</blockquote>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><h4 id="一、同步的缺点"><a href="#一、同步的缺点" class="headerlink" title="一、同步的缺点"></a>一、同步的缺点</h4><ol>
+<li><p>页面会卡顿卡，顿多长时间取决于网络速度</p>
+</li>
+<li><p>xhr.onreadystatechange 的回掉函数不会执行，修改后才能获取数据</p>
+<ul>
+<li>异步是这样写的，需要回掉函数<br><img src="/images/ajax11.png" alt="ajax11"></li>
+<li>同步是不需要设置回掉函数的<br><img src="/images/ajax12.png" alt="ajax12"></li>
+</ul>
+</li>
+</ol>
+<h4 id="二、同步缺点原因"><a href="#二、同步缺点原因" class="headerlink" title="二、同步缺点原因"></a>二、同步缺点原因</h4><ul>
+<li>当时同步是，在第二步准备发送时，xhr.readyState的值已经4，和第三步时，xhr.status的值也已经是200，而xhr.onreadyStatechange函数是当两者改变时，才执行，所以此时回掉函数执行不了<br><img src="/images/13.ajaxpng" alt="ajax13"></li>
+</ul>
+<h2 id="五、关于xhr-readyState的值"><a href="#五、关于xhr-readyState的值" class="headerlink" title="五、关于xhr.readyState的值"></a>五、关于xhr.readyState的值</h2><p><img src="/images/ajax14.png" alt="ajax14"></p>
+<h2 id="六、Xhr-status-是http的常见状态码"><a href="#六、Xhr-status-是http的常见状态码" class="headerlink" title="六、Xhr.status  是http的常见状态码"></a>六、Xhr.status  是http的常见状态码</h2><ol>
+<li>200表示响应成功</li>
+<li>301表示永久重定向，永远不会再次请求老的地址</li>
+<li>302表示临时重定向，游览器下次还会请求老的地址</li>
+<li>303 缓存</li>
+<li>404表示没有找到请求的资源</li>
+<li>500表示服务端错误</li>
+</ol>
+<h2 id="七、封装"><a href="#七、封装" class="headerlink" title="七、封装"></a>七、封装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyAjax</span>(<span class="params">type,url,params,dataType,callback,async</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//1</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;  <span class="comment">//兼容游览器</span></span><br><span class="line">        xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        xhr = <span class="keyword">new</span> ActiveObject(<span class="string">'Microsoft.XMLHTTP'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//当params为null或为get特殊时</span></span><br><span class="line">    <span class="keyword">if</span>(type === <span class="string">'get'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(params &amp;&amp; params !=<span class="string">''</span>)&#123;</span><br><span class="line">            url += <span class="string">'?'</span> + params;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//2</span></span><br><span class="line">    xhr.open(type,url,<span class="keyword">async</span>);</span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    <span class="keyword">if</span>(type === <span class="string">'get'</span>)&#123;</span><br><span class="line">        xhr.send(<span class="literal">null</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type === <span class="string">'post'</span>)&#123;</span><br><span class="line">        xhr.setRequestHeader(<span class="string">'Content-type'</span>,<span class="string">'application/x-www-form-urlencode'</span>) <span class="comment">//设置xhr请求头信息</span></span><br><span class="line">        xhr.send(params)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//4</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">async</span>)&#123;    <span class="comment">///为异步时</span></span><br><span class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">                    <span class="keyword">var</span> result = <span class="literal">null</span>;</span><br><span class="line">                    <span class="keyword">if</span>(dataType === <span class="string">'json'</span>)&#123;</span><br><span class="line">                        result = xhr.responseText;</span><br><span class="line">                        result = <span class="built_in">JSON</span>.parse(result);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(dataType === <span class="string">'xml'</span>)&#123;</span><br><span class="line">                        result = xhr.responseXML;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;  <span class="comment">///这是是当为其他格式时，如text格式</span></span><br><span class="line">                        result = xhr.resposeText;</span><br><span class="line">                    &#125;</span><br><span class="line">                    callback(result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;    <span class="comment">//为同步时</span></span><br><span class="line">        <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">                <span class="keyword">var</span> result == <span class="number">200</span>;</span><br><span class="line">                <span class="keyword">if</span>(dataType === <span class="string">'json'</span>)&#123;</span><br><span class="line">                    result = xhr.responseText</span><br><span class="line">                    result = <span class="built_in">JSON</span>.parse(result);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(dataType === <span class="string">'xml'</span>)&#123;</span><br><span class="line">                    result = xhr.responseXML;</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    result = xhr.responseText;</span><br><span class="line">                &#125;</span><br><span class="line">                callback(result);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ajax</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/08/23/Ajax基础操作/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ES6基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -687,11 +839,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
         		</li>
       		
 		</ul>
@@ -935,15 +1087,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">技术笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">技术笔记</a>
               </li>
             
             <div class="clearfix"></div>
