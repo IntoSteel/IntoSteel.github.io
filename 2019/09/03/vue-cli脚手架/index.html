@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://intosteel.github.io">
-  <title>我的第一篇博客文章 | 今夜之梦</title>
+  <title>vue-cli脚手架 | 今夜之梦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="第一章内容  第二章内容  参考文献www.codesheep.com">
-<meta name="keywords" content="javascript">
+  <meta name="description" content="1. vue脚手架用来创建vue项目的工具包 创建项目:     npm install -g vue-cli     vue init webpack VueDemo 开发环境运行:     cd VueDemo     npm install     npm run dev 生产环境打包发布     npm run build     npm install -g serve     serv">
+<meta name="keywords" content="技术笔记,VUE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客文章">
-<meta property="og:url" content="https://intosteel.github.io/2019/08/19/我的第一篇博客文章/index.html">
+<meta property="og:title" content="vue-cli脚手架">
+<meta property="og:url" content="https://intosteel.github.io/2019/09/03/vue-cli脚手架/index.html">
 <meta property="og:site_name" content="今夜之梦">
-<meta property="og:description" content="第一章内容  第二章内容  参考文献www.codesheep.com">
+<meta property="og:description" content="1. vue脚手架用来创建vue项目的工具包 创建项目:     npm install -g vue-cli     vue init webpack VueDemo 开发环境运行:     cd VueDemo     npm install     npm run dev 生产环境打包发布     npm run build     npm install -g serve     serv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T08:52:25.031Z">
+<meta property="og:updated_time" content="2019-09-03T10:22:10.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的第一篇博客文章">
-<meta name="twitter:description" content="第一章内容  第二章内容  参考文献www.codesheep.com">
+<meta name="twitter:title" content="vue-cli脚手架">
+<meta name="twitter:description" content="1. vue脚手架用来创建vue项目的工具包 创建项目:     npm install -g vue-cli     vue init webpack VueDemo 开发环境运行:     cd VueDemo     npm install     npm run dev 生产环境打包发布     npm run build     npm install -g serve     serv">
   
     <link rel="alternative" href="/atom.xml" title="今夜之梦" type="application/atom+xml">
   
@@ -161,14 +161,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-我的第一篇博客文章" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vue-cli脚手架" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class=" article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      我的第一篇博客文章
+      vue-cli脚手架
     </h1>
   
 
@@ -180,8 +180,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/08/19/我的第一篇博客文章/" class="archive-article-date">
-        <time datetime="2019-08-19T05:32:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
+<a href="/2019/09/03/vue-cli脚手架/" class="archive-article-date">
+        <time datetime="2019-09-03T10:20:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
 </a>
 
   
@@ -190,12 +190,162 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
-<hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>内容</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://www.codesheep.com" target="_blank" rel="noopener">www.codesheep.com</a></p>
+    <h2 id="1-vue脚手架"><a href="#1-vue脚手架" class="headerlink" title="1. vue脚手架"></a>1. vue脚手架</h2><pre><code>用来创建vue项目的工具包
+创建项目:
+    npm install -g vue-cli
+    vue init webpack VueDemo
+开发环境运行:
+    cd VueDemo
+    npm install
+    npm run dev
+生产环境打包发布
+    npm run build
+    npm install -g serve
+    serve dist
+    http://localhost:5000</code></pre><h2 id="2-eslint"><a href="#2-eslint" class="headerlink" title="2. eslint"></a>2. eslint</h2><pre><code>用来做项目编码规范检查的工具
+基本原理: 定义了很多规则, 检查项目的代码一旦发现违背了某个规则就输出相应的提示信息
+有相应的配置, 可定制检查</code></pre><h2 id="3-组件化编程"><a href="#3-组件化编程" class="headerlink" title="3. 组件化编程"></a>3. 组件化编程</h2><pre><code>vue文件包含3个部分
+    &lt;template&gt;
+      &lt;div&gt;&lt;/div&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        export default {
+          props: []/{}
+          data(){},   //在组件里，data必须使用这种函数来写
 
+          computed: {}
+          methods: {},
+
+          watch: {}
+          filters: {}
+          directives: {}
+          components: {}
+        }
+    &lt;/script&gt;
+    &lt;style&gt;
+    &lt;/style&gt;
+组件化编码的基本流程
+  1). 拆分界面, 抽取组件
+  2). 编写静态组件
+  3). 编写动态组件
+    1、引入组件：import App from &apos;./App.vue&apos;
+    2、映射组件标签：components:{App}
+    3、形成使用模板，初始化数据：template:&apos;&lt;App/&gt;&apos;
+       初始化数据, 动态显示初始化界面
+       实现与用户交互功能
+组件通信的5种方式
+  props
+  vue的自定义事件
+  pubsub第三方库
+  slot
+  vuex(后面单独讲)
+
+  1、props:
+    父子组件间通信的基本方式
+    属性值的2大类型: 
+        一般: 父组件--&gt;子组件
+        函数: 子组件--&gt;父组件 逐层通信
+    隔层组件间传递: 必须逐层传递(麻烦)
+    兄弟组件间: 必须借助父组件(麻烦)
+
+  2、vue自定义事件(绑定事件，触发事件)
+    子组件与父组件的通信方式
+    用来取代function props
+    不适合隔层组件和兄弟组件间的通信
+
+  3、pubsub第三方库(消息订阅与发布)
+    适合于 任何关系 的组件间通信
+
+  4、slot
+    通信是带数据的标签
+    注意: 标签是在父组件中解析
+  5、vuex
+    多组件共享状态(数据的管理)
+    组件间的关系也没有限制
+    功能比pubsub强大, 更适用于vue项目</code></pre><h2 id="4-ajax"><a href="#4-ajax" class="headerlink" title="4. ajax"></a>4. ajax</h2><pre><code>1、相关库:
+    vue-resource: vue插件, 多用于vue1.x
+    axios: 第三方库, 多用于vue2.x
+
+2、vue-resource使用
+    // 引入模块
+    import VueResource from &apos;vue-resource&apos;
+    // 使用插件
+    Vue.use(VueResource)
+
+    // 通过vue/组件对象发送ajax请求
+    this.$http.get(&apos;/someUrl&apos;).then((response) =&gt; {
+      // success callback
+      console.log(response.data) //返回结果数据
+    }, (response) =&gt; {
+      // error callback
+      console.log(response.statusText) //错误信息
+    })
+
+3、axios使用
+    // 引入模块
+    import axios from &apos;axios&apos;
+
+    // 发送ajax请求
+    axios.get(url)
+      .then(response =&gt; {
+        console.log(response.data) // 得到返回结果数据
+      })
+      .catch(error =&gt; {
+      console.log(error.message)
+      })</code></pre><h2 id="5-vue-router"><a href="#5-vue-router" class="headerlink" title="5. vue-router"></a>5. vue-router</h2><pre><code>vue用来实现SPA的插件
+使用vue-router
+    1、创建路由器: router/index.js
+      new VueRouter({
+        routes: [
+          { // 一般路由
+            path: &apos;/about&apos;,
+            component: about
+          },
+          { // 自动跳转路由
+            path: &apos;/&apos;, 
+            redirect: &apos;/about&apos;
+          }
+        ]
+      })
+    2、注册路由器: main.js
+       import router from &apos;./router&apos;
+        new Vue({
+          router
+        })
+    3、使用路由组件标签:
+        &lt;router-link to=&quot;/xxx&quot;&gt;Go to XXX&lt;/router-link&gt;
+        &lt;router-view&gt;&lt;/router-view&gt;
+
+2、编写路由的3步
+    1. 定义路由组件    
+    2. 映射路由
+    3. 编写路由2个标签
+
+3、嵌套路由
+    children: [
+        {
+          path: &apos;/home/news&apos;,
+          component: news
+        },
+        {
+          path: &apos;message&apos;,
+          component: message
+        }
+     ]
+
+4、向路由组件传递数据
+    params: &lt;router-link to=&quot;/home/news/abc/123&quot;&gt;
+    props: &lt;router-view msg=&apos;abc&apos;&gt;
+
+5、缓存路由组件
+    &lt;keep-alive&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/keep-alive&gt;
+
+6、路由的编程式导航
+  this.$router.push(path): 相当于点击路由链接(可以返回到当前路由界面)
+  this.$router.replace(path): 用新路由替换当前路由(不可以返回到当前路由界面)
+  this.$router.back(): 请求(返回)上一个记录路由</code></pre>
     
 
     
@@ -241,7 +391,7 @@
           </li>
           <li>
             <strong>本文链接：</strong>
-            <a href="https://intosteel.github.io/2019/08/19/我的第一篇博客文章/" title="我的第一篇博客文章" target="_blank">https://intosteel.github.io/2019/08/19/我的第一篇博客文章/</a>
+            <a href="https://intosteel.github.io/2019/09/03/vue-cli脚手架/" title="vue-cli脚手架" target="_blank">https://intosteel.github.io/2019/09/03/vue-cli脚手架/</a>
           </li>
           <li>
             <strong>版权声明： </strong>
@@ -260,7 +410,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VUE</a>
         		</li>
       		
 		</ul>
@@ -316,7 +470,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://intosteel.github.io/2019/08/19/我的第一篇博客文章/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://intosteel.github.io/2019/09/03/vue-cli脚手架/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -331,15 +485,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/08/21/ES6基础语法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/03/vue基础语法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ES6基础语法
+          vue基础语法
         
       </div>
     </a>
   
+  
+    <a href="/2019/08/23/Ajax基础操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ajax基础操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -356,6 +515,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-vue脚手架"><span class="toc-number">1.</span> <span class="toc-text">1. vue脚手架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-eslint"><span class="toc-number">2.</span> <span class="toc-text">2. eslint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-组件化编程"><span class="toc-number">3.</span> <span class="toc-text">3. 组件化编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ajax"><span class="toc-number">4.</span> <span class="toc-text">4. ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-vue-router"><span class="toc-number">5.</span> <span class="toc-text">5. vue-router</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
