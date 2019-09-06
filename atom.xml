@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://intosteel.github.io/"/>
-  <updated>2019-09-03T11:15:14.296Z</updated>
+  <updated>2019-09-06T09:52:59.323Z</updated>
   <id>https://intosteel.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue-devtools扩展工具安装</title>
+    <link href="https://intosteel.github.io/2019/09/06/vue-devtools%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/"/>
+    <id>https://intosteel.github.io/2019/09/06/vue-devtools扩展工具安装/</id>
+    <published>2019-09-06T09:22:39.000Z</published>
+    <updated>2019-09-06T09:52:59.323Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="vue-devtools游览器扩展工具"><a href="#vue-devtools游览器扩展工具" class="headerlink" title="vue-devtools游览器扩展工具"></a>vue-devtools游览器扩展工具</h2><h3 id="Vue-js-devtools是基于google-chrome浏览器的一款调试vue-js应用的开发者浏览器扩展，可以在浏览器开发者工具下调试代码。新版本谷歌游览器现在不支持直接拖拽文件安装"><a href="#Vue-js-devtools是基于google-chrome浏览器的一款调试vue-js应用的开发者浏览器扩展，可以在浏览器开发者工具下调试代码。新版本谷歌游览器现在不支持直接拖拽文件安装" class="headerlink" title="Vue.js devtools是基于google chrome浏览器的一款调试vue.js应用的开发者浏览器扩展，可以在浏览器开发者工具下调试代码。新版本谷歌游览器现在不支持直接拖拽文件安装"></a>Vue.js devtools是基于google chrome浏览器的一款调试vue.js应用的开发者浏览器扩展，可以在浏览器开发者工具下调试代码。新版本谷歌游览器现在不支持直接拖拽文件安装</h3><ul><li><p>这里采用源码安装</p><ol><li><p>首先在github下载devtools源码，地址：<a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">https://github.com/vuejs/vue-devtools</a></p><p><img src="/images/vue-devtools1.png" alt="vue-devtools1"></p></li><li><p>修改shells/chrome/manifest.json<br><img src="/images/vue-devtools2.png" alt="vue-devtools2"><br><img src="/images/vue-devtools3.png" alt="vue-devtools3"></p></li><li><p>打开谷歌游览器的设置–&gt;扩展程序，并勾选开发者模式</p></li><li><p>然后将刚刚编译后的工程中的shells目录下，将chrome文件夹直接拖拽到当前浏览器中，并选择启用，即可将插件安装到浏览器。</p></li></ol></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;vue-devtools游览器扩展工具&quot;&gt;&lt;a href=&quot;#vue-devtools游览器扩展工具&quot; class=&quot;headerlink&quot; title=&quot;vue-devtools游览器扩展工具&quot;&gt;&lt;/a&gt;vue-devtools游览器扩展工具&lt;/h2&gt;&lt;h3 i
+      
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="https://intosteel.github.io/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React_developer_tools安装</title>
+    <link href="https://intosteel.github.io/2019/09/06/React-developer-tools%E5%AE%89%E8%A3%85/"/>
+    <id>https://intosteel.github.io/2019/09/06/React-developer-tools安装/</id>
+    <published>2019-09-06T08:56:14.000Z</published>
+    <updated>2019-09-06T09:21:40.877Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="React-Developer-Tools调试工具安装"><a href="#React-Developer-Tools调试工具安装" class="headerlink" title="React Developer Tools调试工具安装"></a>React Developer Tools调试工具安装</h2><ol><li>本来以前是把.rcx的react developer tools文件拖进谷歌游览器的扩展程序里面就可以安装</li><li>但新版本的游览器不支持这种了，后来像vue-devtools一样源码安装，还是没搞好</li><li>在网上找了很多资源，最后发现一个很简洁的方法，直接把文件这个文件拖入谷歌游览器就可以。</li><li>reactdevtools下载地址：链接：<a href="https://pan.baidu.com/s/13VR8pAOvQLvp7b1Eb2dIYw" target="_blank" rel="noopener">https://pan.baidu.com/s/13VR8pAOvQLvp7b1Eb2dIYw</a><br>提取码：71gd</li><li>reactdevelopertools下载地址：链接：<a href="https://pan.baidu.com/s/1d97dv2B3XXGxwUgPQTG7iA" target="_blank" rel="noopener">https://pan.baidu.com/s/1d97dv2B3XXGxwUgPQTG7iA</a><br>提取码：k5nj</li><li>结果如下<br><img src="/images/react_developer_tools1.png" alt="react_developer_tools"></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;React-Developer-Tools调试工具安装&quot;&gt;&lt;a href=&quot;#React-Developer-Tools调试工具安装&quot; class=&quot;headerlink&quot; title=&quot;React Developer Tools调试工具安装&quot;&gt;&lt;/a&gt;React
+      
+    
+    </summary>
+    
+    
+      <category term="React" scheme="https://intosteel.github.io/tags/React/"/>
+    
+  </entry>
   
   <entry>
     <title>vue基础语法</title>
